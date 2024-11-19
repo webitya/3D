@@ -1,0 +1,488 @@
+:root {
+    --line-color: #fff;
+    --animation-duration: 3s;
+    --animation-duration1: 5s; /* Slower animation duration */
+    --scroll-speed: 0.8s;
+    --card-scale: 1.05;
+    --card-opacity: 0.8;
+    --card-width: 300px;
+    --card-height: 300px;
+}
+body {
+    margin: 0;
+    background-color: #000000;
+    color: #000000;
+    overflow-x: hidden;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8); /* Add transparency for a modern look */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 125px;
+    z-index: 10000;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+}
+.frame {
+    justify-content: center; /* Move title closer to the center */
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Reduced gap to bring the title and menu closer together */
+}
+.nav-text {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 40px;
+    letter-spacing: 2px;
+    padding-top: 20px; /* Add padding to vertically center the title */
+    padding-left: 4rem;
+    color: var(--line-color);
+    transition: color 0.3s ease;
+}
+.menu-toggle {
+    cursor: pointer;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    margin-top: 20px;
+    margin-right: 4rem; /* Reduced margin to bring menu closer to the title */
+    color: var(--line-color);
+    transition: color 0.3s ease;
+    padding: 0 10px 0px 10px; /* Add padding to increase hit area */
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        height: 100px;
+    }
+    .nav-text {
+        font-size: 30px;
+        padding-left: 2rem;
+    }
+    .menu-toggle {
+        margin-top: 15px;
+        margin-right: 2rem;
+    }
+    .menu-items li {
+        font-size: 24px;
+    }
+    .card-root {
+        width: 150px;
+        height: 150px;
+        padding-top: 2rem;
+    }
+    .Projects {
+        font-size: 2rem;
+        padding: 20% 5% 5% 3%;
+    }
+    .card-title,
+    .card-year,
+    .card-index {
+        font-size: 1rem;
+        animation: fadeIn var(--animation-duration1) ease-in-out; /* Independent animation for card index */
+        animation-delay: var(--card-index-delay, 0s); /* Customizable delay */
+    }
+}
+
+/* Tablets (601px to 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .navbar {
+        height: 110px;
+    }
+    .nav-text {
+        font-size: 36px;
+        padding-left: 3rem;
+    }
+    .menu-toggle {
+        margin-top: 18px;
+        margin-right: 3rem;
+    }
+    .menu-items li {
+        font-size: 28px;
+    }
+    .card-root {
+        width: 220px;
+        height: 220px;
+        padding-top: 3rem;
+    }
+    .Projects {
+        font-size: 3rem;
+        padding: 50% 7% 7% 4%;
+    }
+    .card-title,
+    .card-year,
+    .card-index {
+        font-size: 1.25rem;
+    }
+}
+
+/* Desktops (Above 1024px) */
+@media (min-width: 1025px) {
+    .card-root {
+        width: 300px;
+        height: 300px;
+        padding-top: 5rem;
+    }
+    .Projects {
+        font-size: 3rem;
+        padding: 30% 10% 10% 5%;
+    }
+    .card-title,
+    .card-year,
+    .card-index {
+        font-size: 1.5rem;
+    }
+}
+
+/* Fullscreen Menu Overlay */
+.fullscreen-menu {
+    position: fixed;
+    top: var(--navbar-height); /* Place fullscreen menu just below the navbar using navbar height variable */
+    left: 0;
+    width: 100vw; /* Full width of the screen */
+    transform: scaleY(0); /* Start with scaleY as 0 */
+    transform-origin: top;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 9;
+    transition: transform 0.7s ease-in-out;
+    overflow: hidden;
+}
+.fullscreen-menu.open {
+    transform: scaleY(1); /* Expand to cover the screen below the navbar */
+    width: 100vw; /* Full width of the screen */
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.95);
+}
+
+/* Menu Items (Full Screen) */
+.menu-items {
+    list-style: none;
+    padding-right: 65px;
+    padding-bottom: 100px;
+    margin-top: 100px;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 36px;
+    text-align: right;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out 0.7s;
+}
+
+.fullscreen-menu.open .menu-items {
+    opacity: 1;
+}
+
+.menu-items li {
+    margin-bottom: 30px;
+    font-size: 48px;
+}
+
+@media (max-width: 600px) {
+    .menu-items li {
+        font-size: 32px; /* Reduce font size for smaller screens */
+    }
+}
+
+.menu-items li span {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.menu-items li a {
+    text-decoration: none;
+    color: #cfcfcf;
+    font-size: 64px;
+    transition: color 0.3s ease;
+}
+
+.menu-items li a:hover {
+    color: #ffffff;
+}
+.menu-toggle, .menu-items li a {
+    position: relative;
+    display: inline-block;
+}
+.menu-toggle::after, .menu-items li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #ffffff;
+    transition: width 0.3s ease;
+}
+.menu-toggle:hover::after, .menu-items li a:hover::after {
+    width: 100%;
+}
+h1 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    margin-top: 5%;
+}
+.page {
+    position: relative;
+    top: 125px;
+    left: 0;
+    width: 100%;
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    color: #fff;
+    padding-right: 100%;
+}
+
+
+.Projects {
+    position: absolute;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-stretch: expanded;
+    font-size: 5rem;
+    text-align: left;
+    padding: 30% 30% 10% 5%;
+    margin: 2rem;
+    margin-right: 10rem; /* Add margin to the right to ensure permanent distance between Projects title and card elements */
+
+}
+
+.cards {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.card-wrapper {
+    flex-direction: column;
+    align-items: center;
+    padding-right: 10rem;
+    position: relative;
+    top: 10%;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    height: 100%;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.card-wrapper::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.card-root {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+    position: relative;
+    z-index: 1;
+    width: var(--card-width);
+    height: var(--card-height);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform-origin: center;
+    padding-top: 32rem;
+    margin-right: 2rem; /* Add spacing between cards */
+}
+
+.card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.top-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+    animation: moveUp var(--animation-duration) ease-in-out forwards;
+    animation-delay: calc(var(--card-index) * 1s);
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+}
+
+.bottom-card {
+    position: absolute;
+    top: 35%;
+    left: 0.5%;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+}
+
+.vertical-line-1 {
+    position: absolute;
+    top: 35%;
+    left: 0.3%;
+    transform: translateX(-100%);
+    width: 0.1vw;
+    height: 40%;
+    background-color: var(--line-color);
+    z-index: 1;
+    animation: expandLineWithTopCard var(--animation-duration) ease-in-out forwards;
+    animation-delay: calc(var(--card-index) * 1s);
+    transform-origin: top;
+    rotate: 180deg;
+}
+
+.vertical-line-2 {
+    position: absolute;
+    top: 41%;
+    left: 100%;
+    width: 0.1vw;
+    height: 35%;
+    background-color: var(--line-color);
+    z-index: 3;
+    animation: expandLineWithTopCard var(--animation-duration) ease-in-out forwards;
+    animation-delay: calc(var(--card-index) * 1s);
+    transform-origin: top;
+    rotate: 180deg;
+}
+.card-info {
+    position: absolute;
+    top: -85%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeIn var(--animation-duration1) ease-in-out forwards;
+    animation-delay: 1s; /* Delay to avoid initial duplicate display */
+    transition: transform var(--animation-duration1) ease-in-out, opacity var(--animation-duration1) ease-in-out;
+}
+
+.card-title {
+    position: absolute;
+    top: 23%;
+    left: 10%;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--line-color);
+    z-index: 2;
+
+    animation: fadeIn var(--animation-duration1) ease-in-out; /* Independent animation for card title */
+    animation-delay: var(--card-title-delay, 1.5s); /* Customizable delay */
+}
+
+.card-index {
+    position: absolute;
+    top: 5%;
+    left: 10%;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 300;
+    font-size: 0.75rem;
+    color: var(--line-color);
+    z-index: 2;
+}
+
+.card-year {
+    position: absolute;
+    top: 37.5%;
+    left: 10%;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 400;
+    font-stretch: expanded;
+    font-size: 0.75rem;
+    color: #fff;
+    z-index: 2;
+
+    animation: fadeIn var(--animation-duration1) ease-in-out; /* Independent animation for card year */
+    animation-delay: var(--card-year-delay, 0s); /* Customizable delay */
+}
+
+.img {
+    position: absolute;
+    top: -30%;
+    left: 1%;
+    width: 100%;
+    height: auto;
+    z-index: 0;
+    opacity: 0;
+    animation: easeUp var(--animation-duration1) ease-in-out forwards;
+    animation-delay: 1.5s; /* Delay for ease-up effect */
+}
+
+@keyframes moveUp {
+    0% {
+        top: 0;
+    }
+    100% {
+        top: -120%;
+    }
+}
+
+@keyframes expandLineWithTopCard {
+    0% {
+        height: 20%;
+    }
+    100% {
+        height: 140%;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(20%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes easeUp {
+    0% {
+        transform: translateY(20%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

@@ -1,0 +1,578 @@
+/* Root Variables */
+:root {
+    --navbar-height: 100px; /* Set to the desired height */
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --btn-color: var(--color-white);
+    --btn-background: var(--color-black);
+    --btn-color-hover: var(--color-black);
+    --btn-background-hover: rgba(255, 255, 255, 0.85);
+    --border-color: var(--color-white);
+    --border-color-hover: var(--color-black);
+}
+
+/* Typography */
+h2, h3, h4, h5, h6, p {
+    color: var(--color-white);
+    margin: 0;
+}
+
+h2 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 128px;
+}
+
+h3 {
+    font-family: "KoHo", sans-serif;
+    font-size: 32px;
+    font-weight: 100;
+}
+
+h4 {
+    font-family: "KoHo", sans-serif;
+    font-size: 64px;
+    font-weight: 100;
+}
+
+h5 {
+    font-family: "KoHo", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+h6 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 75px;
+}
+
+p {
+    font-family: "Roboto Mono", monospace;
+    font-size: 100px;
+    font-weight: 500;
+}
+
+/* Global Layouts and Sections */
+.absolute {
+    position: relative;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-family: "KoHo", sans-serif;
+}
+
+.intro {
+    padding-top: 75px; /* Adjust this value based on your navbar's height */
+}
+
+.intro, .about-me, .projects {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 200px;
+    text-align: center;
+}
+
+.View-more {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 100px;
+    cursor: pointer;
+}
+/* Navigation Bar */
+/* Basic Styles */
+body {
+    margin: 0;
+    font-family: 'Bebas Neue', sans-serif;
+    background-color: #000000;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* Navbar Styles */
+.navbar {
+    justify-content: center; /* Move elements closer to the center */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8); /* Add transparency for a modern look */
+    position: fixed;
+    width: 100%;
+    height: var(--navbar-height);
+    z-index: 10000;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+}
+
+.frame {
+    justify-content: center; /* Move title closer to the center */
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Reduced gap to bring the title and menu closer together */
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+}
+
+.nav-text {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 40px;
+    letter-spacing: 2px;
+    padding-left: 4rem;
+    color: var(--color-white);
+    transition: color 0.3s ease;
+}
+
+.nav-text:hover {
+    color: #cfcfcf;
+}
+
+.menu-toggle {
+    cursor: pointer;
+    font-size: 28px;
+    letter-spacing: 2px;
+    margin-right: 4rem; /* Reduced margin to bring menu closer to the title */
+    color: var(--color-white);
+    transition: color 0.3s ease;
+    padding: 0,10,10,10 px; /* Add padding to increase hit area */
+}
+
+@media (max-width: 600px) {
+    .menu-toggle {
+        margin-right: 1rem; /* Reduce margin on smaller screens */
+    }
+}
+
+.menu-toggle:hover {
+    color: #cfcfcf;
+}
+
+/* Fullscreen Menu Overlay */
+.fullscreen-menu {
+    position: fixed;
+    top: var(--navbar-height); /* Place fullscreen menu just below the navbar using navbar height variable */
+    left: 0;
+    width: 100vw; /* Full width of the screen */
+    height: 0; /* Start with height as 0 */
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 9;
+    transition: height 0.7s ease-in-out;
+    overflow: hidden;
+}
+
+.fullscreen-menu.open {
+    height: calc(100vh - var(--navbar-height)); /* Expand to cover the screen below the navbar */
+    width: 100vw; /* Full width of the screen */
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.95);
+}
+
+/* Menu Items (Full Screen) */
+.menu-items {
+    list-style: none;
+    padding-right: 100px;
+    padding-bottom: 100px;
+    margin: 0;
+    font-size: 36px;
+    text-align: right;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out 0.7s;
+}
+
+.fullscreen-menu.open .menu-items {
+    opacity: 1;
+}
+
+.menu-items li {
+    margin-bottom: 30px;
+    font-size: 48px;
+}
+
+@media (max-width: 600px) {
+    .menu-items li {
+        font-size: 32px; /* Reduce font size for smaller screens */
+    }
+}
+
+.menu-items li span {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.menu-items li a {
+    text-decoration: none;
+    color: #cfcfcf;
+    font-size: 64px;
+    transition: color 0.3s ease;
+}
+
+.menu-items li a:hover {
+    color: #ffffff;
+}
+.menu-toggle, .menu-items li a {
+    position: relative;
+    display: inline-block;
+}
+.menu-toggle::after, .menu-items li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #ffffff;
+    transition: width 0.3s ease;
+}
+.menu-toggle:hover::after, .menu-items li a:hover::after {
+    width: 100%;
+}
+
+/* Styling for About Me */
+.about-me {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    overflow: hidden;
+}
+
+.about-svg-container {
+    position: relative;
+    width: 100%;
+    min-width: 1400px;
+    height: auto;
+    overflow: hidden;
+}
+
+.about-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    z-index: 1; /* SVG should stay below the text */
+}
+
+/* Positioning the text inside the SVG */
+.about-text {
+    position: absolute;
+    top: 60%;
+    left: 20%; /* Adjust to position closer to the left side */
+    right: 20%; /* Adjust to give space on the right */
+    transform: translateY(-50%); /* Vertically center */
+    display: flex;
+    justify-content: space-between; /* Space between the title and paragraph */
+    z-index: 2;
+    width: 65%; /* Adjust width to fit the text within the design */
+}
+
+.about-text h6 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 5rem;
+    font-weight: bold;
+    color: #000;
+    text-transform: uppercase;
+    margin: 0;
+    flex-basis: 50%; /* Occupies 30% of the width */
+    text-align: left;
+}
+
+.about-text p {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.25rem;
+    color: #000;
+    text-transform: lowercase;
+    margin-right: 150px;
+    flex-basis: 55%; /* Occupies 65% of the width */
+    text-align: left;
+    line-height: 1.5; /* Better readability for the paragraph */
+}
+
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Projects Section */
+.pro {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 5rem;
+    color: var(--color-white);
+    text-align: center;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: bold;
+    color: transparent;
+    -webkit-text-stroke: 2px white;
+}
+
+.project-cards {
+    display: flex;
+    margin: 50px 0;
+    gap: 50px;
+    justify-content: center;
+}
+
+.project-card {
+    position: relative;
+    width: 25vw;
+    height: calc(25vw * 1.75);
+    max-width: 256px;
+    max-height: 448px;
+}
+
+.project-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.project-card svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(25vw * 1.167);
+    height: calc(25vw * 1.95);
+    max-width: 299px;
+    max-height: 498.5px;
+    pointer-events: none;
+    z-index: 20;
+    transition: transform 0.3s ease, fill 0.3s ease;
+    stroke-width: 5;
+    transform-origin: center;
+}
+
+.project-card:hover svg {
+    transform: translate(-50%, -50%) scale(0.8);
+}
+
+.project-card:hover svg path {
+    fill: black;
+    stroke: black;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.75);
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.overlay-text {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 32px;
+    color: #000;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+    gap: 10px;
+}
+
+.project-card:hover .overlay,
+.project-card:hover .overlay-text {
+    opacity: 1;
+}
+
+@media (max-width: 600px) {
+    .project-card {
+        width: 50vw;
+        height: calc(50vw * 1.75);
+    }
+
+    .project-card svg {
+        width: calc(50vw * 1.167);
+        height: calc(50vw * 1.95);
+    }
+}
+
+/* Get In Touch Section */
+.GIT {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    text-align: center;
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+.get-in-touch {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 5rem;
+    color: var(--color-white);
+    text-align: center;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: bold;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInButton {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes textSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(100%) skewY(10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) skewY(0deg);
+    }
+}
+
+.fadeIn {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fadeInVisible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fadeInButton {
+    animation: fadeInButton 3s ease 0.5s forwards;
+}
+
+.textSlideIn {
+    animation: textSlideIn 3s ease forwards;
+}
+
+/* Intro and Three.js Containers */
+#intro {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+#threejs-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#canvas-container {
+    width: 100%;
+    height: 100%;
+}
+
+/* Button Styles (unchanged) */
+.btn {
+    display: block;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 15px 50px 20px;
+    background-color: var(--btn-background);
+    color: var(--btn-color);
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn--stripe::after {
+    content: '';
+    display: block;
+    height: 7px;
+    width: 100%;
+    background-image: repeating-linear-gradient(
+        45deg,
+        var(--border-color),
+        var(--border-color) 1px,
+        transparent 2px,
+        transparent 5px
+    );
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-size: 7px 7px;
+}
+
+.btn--stripe:hover {
+    background-color: var(--btn-background-hover);
+    color: var(--btn-color-hover);
+    border-color: var(--border-color-hover);
+    border-bottom-color: transparent;
+}
+
+.btn--stripe:hover::after {
+    background-image: repeating-linear-gradient(
+        45deg,
+        var(--btn-color-hover),
+        var(--btn-color-hover) 1px,
+        transparent 2px,
+        transparent 5px
+    );
+    animation: stripe-slide 12s infinite linear forwards;
+    border-top: 1px solid var(--border-color-hover);
+}
+
+@keyframes stripe-slide {
+    from { background-position: 0% 0; }
+    to { background-position: 100% 0; }
+}

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=KoHo:wght@300;500&display=swap" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/RudeBot.css">
+</head>
+<body>
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="frame">
+                <a href="index.html">
+               <div class="nav-text">ELOG_X_STUDIO</div>
+            </a>
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()" tabindex="0" onkeydown="handleMenuToggleKey(event)">
+                <span>Menu</span>
+                <!-- Fullscreen Menu -->
+                <div id="fullscreen-menu" class="fullscreen-menu">
+                  <ul class="menu-items">
+                    <li><span>01 /</span><a href="index.html">Home</a></li>
+                    <li><span>02 /</span><a href="/contact.html">Contact</a></li>
+                    <li><span>03 /</span><a href="/projects.html">Projects</a></li>
+                    <li><span>04 /</span><a href="/about.html">About Me</a></li>
+                  </ul>
+                </div>
+              </div>
+        </nav>
+    </header>
+    
+    <!-- Page -->
+    <div class="project-title">
+        <div class="work-type">
+            Project /1
+        </div>
+        <div class="details">
+            <!-- Template for Project Information -->
+            <div class="masking-text">
+                <ul class="line">
+                    <!-- Country Information -->
+                    <li class="menu-item">
+                        <span class="label">Country: </span><span class="value">Canada</span>
+                    </li> /
+                    <!-- Year Information -->
+                    <li class="menu-item">
+                        <span class="label">Year: </span><span class="value">2023</span>
+                    </li> /
+                    <!-- Industry Information -->
+                    <li class="menu-item">
+                        <span class="label">Industry: </span><span class="value">Artificial Intelligence</span>
+                    </li> /
+                    <!-- Services Dropdown -->
+                    <li class="menu-item">
+                        <span class="label">Service(s): </span>
+                        <div class="dropdown-toggle">
+                            <div class="dropdown-content">
+                                <div class="icon-info">
+                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="7.5" cy="7.5" r="7" fill="#fff"></circle>
+                                        <path d="M8.0767 4.51085V3.46094H6.92285V4.51085H8.0767ZM8.0767 11.5379V6.06557H6.92285V11.5379H8.0767Z" fill="#000"></path>
+                                    </svg>
+                                </div>
+                                <div class="dropdown-details">
+                                    <p>Service 1: Machine Learning Consultancy</p>
+                                    <p>Service 2: Data Analysis</p>
+                                    <p>Service 3: AI Model Deployment</p>
+                                    <p>Service 4: Custom AI Solutions</p>
+                                    <p>Service 5: Training and Workshops</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- Project Title -->
+            <div class="title">
+                RudeBot
+            </div>
+        </div>
+    </div>
+
+    <div class="img1">
+        <img src="/assets/rudebotmockup1.png" class="image1">
+    </div>
+    <div class="intro">
+        <div class="description">
+            Inefficiency personified, RudeBot is a chatbot that is designed to be as unhelpful as possible, providing users with a frustrating and unproductive experience.
+        </div>
+        <div class="background1"></div>
+    </div>
+    <div class="line-1"></div>
+    <div class="overview">
+        <div class="project-overview">
+            Project Overview -
+        </div>
+        <div class="overview-content">
+            <div class="overview-text">
+                <p>
+                    RudeBot is an interactive project exploring AI gone wrong. It features 100 sarcastic, dismissive, arrogant, or condescending AI-generated responses, creating a "rude" personality. Coded in VS Code and hosted on a Raspberry Pi, RudeBot randomly selects responses, using Boolean logic and keywords for added humor. User feedback was positive, suggesting interface improvements. RudeBot offered a playful twist on AI interactions, subverting typical expectations.
+                </p>
+            </div>
+            <div class="challenge-section">
+                <h4 class="challenge-title">Challenge-</h4>
+            </div>
+            <div class="challenge-section">
+                <p class="challenge-description">
+                    One major challenge was finding a suitable data source. Initially, using AI memes was considered, but it lacked interactivity, leading to a shift towards using AI-generated responses. Another difficulty was designing an intuitive interface, as early versions had usability issues like a small search bar and unclear interactions. Time constraints also limited further expansions and feature additions.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="approach" start="8">
+        <div class="approach-section">
+            <h4 class="approach-title">Approach-</h4>
+        </div>
+        <div class="approach-section">
+            <p class="approach-description">
+                The approach began with brainstorming ideas under the theme of AI gone wrong. Data collection involved generating responses using ChatGPT prompts, focusing on sarcastic and dismissive tones. For coding, VS Code was used to develop the interaction, and a Raspberry Pi served as the hosting platform. User testing was conducted to gather feedback, which informed interface updates such as resizing the search bar and improving alignment. The project emphasized iteration, incorporating user suggestions to enhance usability and humor.
+            </p>
+        </div>
+    </div>
+    <div class="objective-section">
+        <h4 class="objective-title">Objective</h4>
+        <ul class="objective-list">
+            <li class="objective-item">
+                <span class="objective-step-number">1</span>
+                Create an interactive AI project with a humorous, "rude" personality
+            </li>
+            <li class="objective-item">
+                <span class="objective-step-number">2</span>
+                Collect and use 500 unique AI-generated responses to enhance user engagement.
+            </li>
+            <li class="objective-item">
+                <span class="objective-step-number">3</span>
+                Develop an intuitive user interface that allows seamless interaction with the AI.
+            </li>
+            <li class="objective-item">
+                <span class="objective-step-number">4</span>
+                Use iterative design and user feedback to improve functionality and usability.
+            </li>
+            <li class="objective-item">
+                <span class="objective-step-number">5</span>
+                Host the project on a Raspberry Pi for portability and accessibility.
+            </li>
+            <li class="objective-item">
+                <span class="objective-step-number">6</span>
+                Offer a playful, subversive twist on typical AI interactions to entertain users.
+            </li>
+        </ul>
+    </div>
+    <div class="background2">
+        <div class="design">
+            <div class="design-title">
+                Design
+            </div>
+        </div>
+        <div class="tags">
+            <div class="masking-text">
+                <ul class="line">
+                    <li class="menu-item">
+                        <span class="label">User-flow </span>
+                    </li> /
+                    <li class="menu-item">
+                        <span class="label">Prompt Generation </span>
+                    </li> /
+                    <li class="menu-item">
+                        <span class="label">Prototyping </span>
+                    </li> /
+                    <li class="menu-item">
+                        <span class="label">User-testing </span>
+                    </li> /
+                    <li class="menu-item">
+                        <span class="label">Systems </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="img3">
+            <img src="/assets/rudebotmockup4.png" class="image1">
+        </div>
+        <div class="design-overview">
+            <p>
+                RudeBot was crafted to provide users with an engaging, nonsensical experience powered by AI. Designed with inefficiency and portability<br> in mind, RudeBot is hosted on a Raspberry Pi.
+            </p>
+        </div>
+        <div class="line-1"></div>
+        
+        <h4 class="challenge-title1">Challenge-</h4>
+        <div class="challenge-section">
+        </div>
+        <div class="challenge-section">
+            <p class="challenge-description1">
+                RudeBot's sarcastic personality was fully developed, with responses that brought humor and attitude to each interaction. The remaining challenge was to create a seamless, non-linear user experience that allowed users to explore RudeBot’s various moods — dismissive, arrogant, and condescending — without losing clarity. Balancing character with usability, we aimed to keep the interaction engaging and intuitive, establishing RudeBot as a playful “authority” in AI sarcasm.
+            </p>
+        </div>
+        <div class="design-direction" start="8" end="16">
+            <div class="design-direction-section">
+                <h4 class="direction">Direction</h4>
+            </div>
+            <div class="design-direction-content">
+                <p class="direction-text">
+                    In aesthetic terms, this translated to: bold, straightforward, slightly abrasive, with a minimal interface.
+
+                    This allowed us to express RudeBot’s cheeky personality without sacrificing user experience, bringing together a sense of humor with functional simplicity to keep interactions engaging yet effortless.
+                    
+                    In other words, our theme was: accessible rudeness — playful, but purposeful.                </p>
+            </div>
+        </div>
+        <div class="design-result" start="17">
+            <div class="result-section">
+                <h4 class="result">Result</h4>
+            </div>
+            <div class="design-result-section">
+                <p class="result-text">
+                    The final RudeBot prototype was both intuitive and highly engaging, with users thoroughly entertained by its sarcastic personality. User feedback highlighted the seamless blend of humor and usability, with the AI's cheeky responses adding a playful edge to every interaction. The simple yet bold design allowed RudeBot’s character to shine, making it a memorable example of AI-driven, personality-rich user interaction.
+                </div>
+        </div>
+    
+    <div class="fonts">
+        <div class="font-title">
+            Stylesheet  
+      </div>
+            <div class="image-container">
+                <img src="/assets/rudebot-style.png" class="hover-image" alt="RudeBot">
+            </div>
+            
+        </div>
+    </div>    
+    </div>
+
+<div>
+    <div class="prototype">
+        <div class="background3">
+            <div class="prototype-container">
+                <div class="prototype-title">
+                    Prototyping
+                </div>
+                <div class="tags">
+                    <div class="masking-text">
+                        <ul class="line">
+                            <li class="menu-item">
+                                <span class="label">User-flow </span>
+                            </li> /
+                            <li class="menu-item">
+                                <span class="label">Prompt Generation </span>
+                            </li> /
+                            <li class="menu-item">
+                                <span class="label">Prototyping </span>
+                            </li> /
+                            <li class="menu-item">
+                                <span class="label">User-testing </span>
+                            </li> /
+                            <li class="menu-item">
+                                <span class="label">Systems </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="img4">
+                <img src="/assets/rudebotmockup3.png" class="image1">
+            </div>  
+
+            <div class="design-overview">
+                <p>
+                    for the prototyping phose we used figma for the base design, and Vs code to code the responces of the AI chatbot. All the responces were generated by chat gbt.
+                </p>
+            </div>
+            <div class="line-1"></div>
+            <div>
+                <!-- Existing content -->
+
+<!-- Prototyping Process Section -->
+<section class="prototyping-process">
+    <!-- Section Title -->
+    <div class="section-title">
+        Prototyping Process
+    </div>
+    
+    <!-- First Content Block (Image Left, Text Right) -->
+    <div class="content-block">
+        <div class="image-container">
+            <img src="/assets/sketches.png" alt="Initial Sketches">
+        </div>
+        <div class="text-container">
+            <h2>Initial Sketches</h2>
+            <p>
+                We began with hand-drawn sketches to conceptualize the chatbot's interface, focusing on embodying RudeBot's 'rude' personality through design elements.
+            </p>
+        </div>
+    </div>
+
+    <!-- Second Content Block (Text Left, Image Right) -->
+    <div class="content-block reverse">
+        <div class="text-container">
+            <h2>Digital Wireframes</h2>
+            <p>
+                Transitioning to digital, we created wireframes in Figma to refine the layout and user flow, ensuring an intuitive yet unconventional interface.
+            </p>
+        </div>
+        <div class="image-container">
+            <img src="/assets/wireframes.png" alt="Wireframes">
+        </div>
+    </div>
+
+    <!-- Third Content Block (Image Left, Text Right) -->
+    <div class="content-block">
+        <div class="image-container">
+            <img src="/assets/prototype.png" alt="Interactive Prototype">
+        </div>
+        <div class="text-container">
+            <h2>Interactive Prototype</h2>
+            <p>
+                An interactive prototype was developed for user testing, allowing us to gather feedback on functionality and user experience.
+            </p>
+        </div>
+    </div>
+</section>
+
+            </div>
+
+
+
+
+
+
+            <div class="trial">
+                Try Out RudeBot
+            </div>
+            <!-- RudeBot Chatbot Section -->
+            <section id="chatbot-demo">
+                <div class="chatbot-container">
+                    <div class="chat-window-container">
+                        <!-- SVG Chat Window -->
+                        <img src="/assets/Asset 2.png" alt="Chat Window" class="chat-window-svg">
+                        
+                        <!-- Chat messages overlaid on the SVG -->
+                        <div id="chat-window" class="chat-window">
+                            <div id="chat-output" class="chat-output">
+                                <!-- Chat messages will be displayed here -->
+                            </div>
+                        </div> <!-- Close chat-window div -->
+            
+                        <!-- Chat Input overlaid on the SVG -->
+                        <div class="chat-input-container">
+                            <div class="chat-input">
+                                <img src="/assets/paperclip.svg" alt="Attachment" class="attachment-icon">
+                                <input type="text" id="user-input" placeholder="Write your prompt here..." />
+                                <button id="send-button">
+                                    <img class="send-icon" src="/assets/send.svg" alt="Send">
+                                </button>
+                            </div>
+                        </div>
+                    </div> <!-- Close chat-window-container div -->
+                </div> <!-- Close chatbot-container div -->
+            </section>
+            
+
+        </div>
+    </div>
+</div>
+
+    <script>
+         function toggleMenu() {
+      const fullscreenMenu = document.getElementById('fullscreen-menu');
+      fullscreenMenu.classList.toggle('open');
+
+      // Ensure page scrolling is always enabled
+      if (fullscreenMenu.classList.contains('open')) {
+        document.body.style.overflow = 'auto';
+      } else {
+        document.body.style.overflow = 'auto';
+      }
+    }
+           function handleMenuToggleKey(event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        toggleMenu();
+      } else if (event.key === 'Escape') {
+        const fullscreenMenu = document.getElementById('fullscreen-menu');
+        if (fullscreenMenu.classList.contains('open')) {
+          fullscreenMenu.classList.remove('open');
+        }
+      }
+    }
+    </script>  
+    <script src="/src/RudeBot.js"></script>
+</body>
+</html>

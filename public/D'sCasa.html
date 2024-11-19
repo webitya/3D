@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Elog_X_Studio - Project">
+    <title>Elog_X_Studio - Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=KoHo:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+ /* Global Styles */
+ body, html {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #FFF;
+    font-family: "Bebas Neue", sans-serif;
+    height: 100%;
+    overflow-x: hidden; /* Disable horizontal scroll bar */
+    overflow-y: hidden; /* Disable vertical scrolling */
+    display: flex;
+    align-items: center;
+    scroll-behavior: smooth; /* Smooth scrolling behavior */
+}
+.section {
+    padding-top: 120px; /* Adjust this value based on your navbar height */
+    margin-top: -120px; /* This should be the same value as padding-top */
+}
+.wrapper {
+    margin-left: 300px; /* Adjust this value based on the width of your sidebar and the desired spacing */
+    margin-right: auto; /* Ensures the content stays centered within the available space */
+    margin-top: 200px; /* Add margin at the top to create space between navbar and content */
+    display: inline-flex; /* Allow sections to align horizontally */
+    flex-direction: row;
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    gap: 300px; /* Space between sections */
+    overflow-x: hidden; /* Hide scrollbar */
+    overflow-y: hidden; /* Prevent vertical scrolling */
+    width: calc(100% - 350px); /* Full width minus sidebar margin */
+    min-height: 100px; /* Ensure all frames have a consistent height */
+    -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+}
+
+/* Hide the scrollbar across browsers */
+.wrapper::-webkit-scrollbar {
+    display: none; /* Hide scrollbar in WebKit-based browsers */
+}
+
+/* New Addition: Adjusting the speed and responsiveness of the horizontal scroll */
+.wrapper {
+    scroll-behavior: smooth; /* Smooth scrolling behavior */
+    touch-action: pan-x; /* Optimize for touch devices */
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    padding: 50px;
+    margin-left: 200px;
+}
+/* Navbar Styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Other existing styles remain the same */
+
+.nav-text {
+    color: white;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 60px;
+}
+
+.nav-text a {
+    color: white; /* Keep the text color white */
+    text-decoration: none; /* Remove the underline */
+}
+
+.btn--stripe {
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 15px 50px 20px;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    border-radius: 3px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px; /* Space above the button */
+    display: inline-block;
+}
+
+.btn--stripe::after {
+    content: '';
+    display: block;
+    height: 7px;
+    width: 100%;
+    background-image: repeating-linear-gradient(
+        45deg,
+        white,
+        white 1px,
+        transparent 2px,
+        transparent 5px
+    );
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-size: 7px 7px;
+}
+
+.btn--stripe:hover {
+    background-color: white;
+    color: black;
+    border-color: black;
+    border-bottom-color: transparent; /* Small design enhancement */
+}
+
+.btn--stripe:hover::after {
+    background-image: repeating-linear-gradient(
+        45deg,
+        black,
+        black 1px,
+        transparent 2px,
+        transparent 5px
+    );
+    animation: stripe-slide 12s infinite linear forwards;
+    border-top: 1px solid black;
+}
+
+@keyframes stripe-slide {
+    from { background-position: 0% 0; }
+    to { background-position: 100% 0; }
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 200px;
+    height: 100vh;
+    background-color: #000;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 100px;
+}
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: transparent;
+    -webkit-text-stroke-width: .5px;
+    -webkit-text-stroke-color: #FFF;
+    font-family: "Bebas Neue";
+    font-size: 20px;
+    padding: 10px 20px;
+}
+
+.sidebar-item svg {
+    width: 22px;
+    height: 22px;
+    stroke-width: 2px;
+    stroke: #D9D9D9;
+    fill: none;
+}
+.style-image2 {
+    margin-top: 115px;
+    height: 350px;
+    width: 600px;
+    object-fit: cover;
+}
+.high-fidelity-image2 {
+    margin-top: 115px;
+    height: auto;
+    width: 500px;
+    object-fit: cover;
+}
+.project-description {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+    width: 500px;
+}
+/* Content Section Styles */
+.project-container, .client-information, .moodboard-section, .lofi-prototyping-section, 
+.midfi-prototyping, .style-sheets, .high-fidelity, .feedback {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 100px;
+    min-width: 100vw;
+}
+
+/* Ensure all images have the same height with proportional width */
+img, .image, .img, .style-image, .high-fidelity-image, .feedback-image {
+    height: 600px; /* Fixed height for all images */
+    width: auto; /* Adjust width to maintain aspect ratio */
+    object-fit: cover; /* Ensure the image covers the area */
+}
+
+.project-brief, .client-brief, .moodboard-brief, .lofi-prototyping-brief, 
+.midfi-brief, .style-brief, .high-fidelity-brief, .feedback-brief {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    min-width: 660px;
+}
+
+.project-title, .client-title, .moodboard-title, .lofi-prototyping-title, 
+.midfi-title, .style-title, .high-fidelity-title, .feedback-title {
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 120%;
+    -webkit-text-stroke-color: #FFF;
+    width: 575px;
+}
+
+.project-description, .client-description, .moodboard-description, 
+.lofi-prototyping-description, .midfi-description, .feedback-description {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+    max-width: 660px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .wrapper {
+        flex-direction: column;
+        align-items: center;
+        min-width: 100vw;
+    }
+
+    .sidebar {
+        width: 180px;
+    }
+
+    .sidebar-item {
+        font-size: 18px;
+    }
+
+    .project-container, .client-information, .moodboard-section, .lofi-prototyping-section, 
+    .midfi-prototyping, .style-sheets, .high-fidelity, .feedback {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 50px;
+    }
+
+    img, .image, .img {
+        width: 100%;
+        height: auto;
+    }
+
+    .project-title, .client-title, .moodboard-title, .lofi-prototyping-title, 
+    .midfi-title, .style-title, .high-fidelity-title, .feedback-title {
+        font-size: 36px;
+    }
+
+    .project-description, .client-description, .moodboard-description, 
+    .lofi-prototyping-description, .midfi-description, .feedback-description {
+        max-width: 80%;
+        text-align: center;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-text">
+            <a href="index.html">Elog_X_Studio</a>
+        </div>
+        <div class="button-container">
+            <a href="projects.html" class="btn--stripe" aria-label="Projects Button">Projects</a>
+            <a href="contact.html" class="btn--stripe" aria-label="Contact Button">Contact</a>
+        </div>
+    </nav>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="28" viewBox="0 0 27 28" fill="none">
+                <circle cx="13.5" cy="14" r="12" stroke="#D9D9D9" stroke-width="3"/>
+            </svg>
+            Project Brief
+        </div>
+        <div class="sidebar-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="28" viewBox="0 0 27 28" fill="none">
+                <circle cx="13.5" cy="14" r="12" stroke="#D9D9D9" stroke-width="3"/>
+            </svg>
+            Research
+        </div>
+        <div class="sidebar-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="28" viewBox="0 0 27 28" fill="none">
+                <circle cx="13.5" cy="14" r="12" stroke="#D9D9D9" stroke-width="3"/>
+            </svg>
+            Ideate
+        </div>
+        <div class="sidebar-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="28" viewBox="0 0 27 28" fill="none">
+                <circle cx="13.5" cy="14" r="12" stroke="#D9D9D9" stroke-width="3"/>
+            </svg>
+            Prototype
+        </div>
+        <div class="sidebar-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="28" viewBox="0 0 27 28" fill="none">
+                <circle cx="13.5" cy="14" r="12" stroke="#D9D9D9" stroke-width="3"/>
+            </svg>
+            Design
+        </div>
+        <div class="sidebar-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="28" viewBox="0 0 27 28" fill="none">
+                <circle cx="13.5" cy="14" r="12" stroke="#D9D9D9" stroke-width="3"/>
+            </svg>
+            Feedback
+        </div>
+    </div>
+<!-- Main Content -->
+                
+        <div class="content">
+             <div class="wrapper">
+                <div class="section project-container">        
+                    <img src="/assets/flui.png" alt="Flui Project Image" class="project-image">
+                    <div class="project-brief">
+                        <div class="project-title">Project Brief</div>
+                        <div class="project-description">
+                            Flui is a User Interface Design Hackathon held in February 2024 during reading week, where participants collaborate with business clients to solve real-world design problems.
+                        </div>
+                        <a href="https://www.fluihackathon.ca" class="btn--stripe">View site</a>
+                    </div>
+                </div>
+ 
+                <div class="section client-information">
+                    <img src="/assets/sooyu-plan.png" alt="Client Process Image" class="client-image">
+                    <div class="client-brief">
+                        <div class="client-title">Client Information</div>
+                        <div class="client-description">
+                            Sooyu café is a cozy neighborhood brunch spot with Italian influence looking for a better online experience:
+                            <ul>
+                                <li>Focus on affordability, quality, and family-oriented atmosphere.</li>
+                                <li>Aiming to maintain charm while expanding audience reach.</li>
+                                <li>Enhance customer experience and community engagement.</li>
+                                <li>Neighborhood connectivity.</li>
+                                <li>Elevating brunch experience.</li>
+                                <li>Establishing seamless online platform.</li>
+                                <li>Showcase menu pictures prominently.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+ 
+                <div class="section moodboard-section">
+                    <img src="/assets/sooyo-moodboard.png" alt="Moodboard Image" class="moodboard-image">
+                    <div class="moodboard-brief">
+                        <div class="moodboard-title">Moodboard and Illustrations</div>
+                        <div class="moodboard-description">
+                            Our team revamped Sooyu's logo with a fresh twist. One notable transformation involved our redesign of the figure in the logo, showcasing them holding a daily special menu item. This singular yet impactful adjustment injected vibrancy and relevance into the brand's visual identity. We focused on the aesthetics having the following:
+                            <ul>
+                                <li>Strong strokes</li>
+                                <li>Digital drawing style</li>
+                                <li>Cartoon-ish illustration</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+ 
+                <!-- LOW-FI PROTOTYPING SECTION -->
+                <div class="section lofi-prototyping-section">
+                    <img src="/assets/lofi-prot-sooyu.png" alt="Lo-Fi Prototyping Image" class="lofi-prototyping-image">
+                    <div class="lofi-prototyping-brief">
+                        <div class="lofi-prototyping-title">Lo-Fi Prototyping</div>
+                        <div class="lofi-prototyping-description">
+                            My main task was to design the user experience and designing the look and feel of the website that was compliant with the clients needs and wants. Here are some ideas I put forward about how the layout should look like and how to display the menu and the products. We also discussed how the interactions would work on this website and what creative way we can use Figma to create a site that is both appealing and achieves the objective of displaying the menu in new and creative ways. After much thought, we moved to the mid-fidelity prototypes where I would bring these ideas to action.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MID-FI PROTOTYPING SECTION -->
+
+                <div class="section midfi-prototyping">        
+                    <img src="/assets/mid-fi-sooyo.png" alt="Mid-Fidelity Prototype Image" class="midfi-image">
+                    <div class="midfi-brief">
+                        <div class="midfi-title">Mid-Fidelity Prototyping</div>
+                        <div class="midfi-description">
+                            During the design of the mid-fidelity prototypes, my responsibility was to create Figma interactions for all pages. This involved everything from designing elements to ensuring seamless inter-page activity and crafting user flows that supported a non-linear approach. This design strategy allowed users to fully explore Sooyo Café’s website and discover its complete range of products and services. Through extensive prototyping, we streamlined the menu into a single, intuitive component, enhancing navigation. Each menu item was designed as a variant, simplifying user access. Additionally, we introduced an engaging call-to-action for exploring the gallery. To overcome a challenge with hover components, we implemented a creative workaround using rectangles, ensuring a cohesive and accessible user experience.
+                        </div>
+                    </div>
+ 
+                    <!-- style sheet -->
+                    <div class="section style-sheets">
+                        <img src="/assets/sooyo-style1.png" alt="Style Sheets and Inspiration" class="style-image">
+                        <div class="style-brief">
+                            <div class="style-title">Style Sheets and Inspiration for the Website</div>
+                            <img src="/assets/sooyo-style2.png" alt="Style Sheets and Inspiration" class="style-image2">
+                        </div>
+                    </div>
+                    
+                    <!-- High-Fidelity Prototypes -->
+                    <div class="section high-fidelity">
+                        <img src="/assets/sooyo-main.png" alt="High Fidelity Prototypes Left" class="high-fidelity-image">
+                        <div class="high-fidelity-brief">
+                            <div class="high-fidelity-title">High-Fidelity Prototypes</div>
+                            <img src="/assets/sooyo-menu.png" alt="High Fidelity Prototypes Right" class="high-fidelity-image2">
+                        </div>
+                    </div>
+                    
+                    <!-- feedback-->
+                    <div class="section feedback">
+                        <img src="/assets/sooyo.png" alt="Sooyo Logo" class="feedback-image">
+                        <div class="feedback-brief">
+                            <div class="feedback-title">Feedback</div>
+                                <div class="feedback-description">
+                                    <p>In our final meeting, we presented the website to the client, who actively explored the various pages and features. The client was particularly impressed with the incorporation of the hand-drawn illustrations, which they felt added a unique and personal touch to the overall design. They appreciated how these sketches contributed to the cozy and welcoming atmosphere that aligns well with the Sooyo Café brand.The client was pleased with the overall user experience, especially how we designed the menu noting that the navigation was intuitive, and they expressed excitement about the final product.</p>
+                                </div>
+                            <a href="projects.html" class="btn--stripe">Projects</a>
+                            </div>
+                        </div>
+        </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const sections = document.querySelectorAll('.section');
+    let currentIndex = 0;
+
+    window.addEventListener('wheel', function (event) {
+        if (event.deltaY > 0) {
+            // Scrolling down
+            currentIndex = Math.min(currentIndex + 1, sections.length - 1);
+        } else {
+            // Scrolling up
+            currentIndex = Math.max(currentIndex - 1, 0);
+        }
+
+        sections[currentIndex].scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+
+        event.preventDefault(); // Prevent default scrolling
+    });
+});
+document.addEventListener('DOMContentLoaded', function () {
+    const sections = document.querySelectorAll('.section');
+    const sidebarItems = document.querySelectorAll('.sidebar-item svg');
+
+    function clearFills() {
+        sidebarItems.forEach(item => {
+            item.style.fill = 'none';
+        });
+    }
+
+    function updateSidebar(activeIndex) {
+        clearFills();
+
+        if (activeIndex <= 3) {
+            sidebarItems[activeIndex].style.fill = '#fff'; // Fill the current section's SVG
+        } else if (activeIndex >= 4 && activeIndex <= 5) {
+            sidebarItems[3].style.fill = '#fff'; // Keep Prototype filled during all its subsections
+        } else {
+            sidebarItems[activeIndex - 2].style.fill = '#fff'; // Adjust index for Design and Feedback
+        }
+    }
+
+    function detectSectionInView() {
+        const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+        sections.forEach((section, index) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                updateSidebar(index);
+            }
+        });
+    }
+
+    window.addEventListener('scroll', detectSectionInView);
+
+    // Initialize with the first section filled
+    updateSidebar(0);
+});
+
+</script>
+</body>
+</html>

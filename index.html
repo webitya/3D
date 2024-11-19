@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="3D scene built with Three.js and Vite.">
+
+  <!-- Page Title -->
+  <title>Three.js Project</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=KoHo:wght@300;500&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="frame">
+        <!-- Logo or Text -->
+        <!-- <img class="logo" src="/assets/Vector.svg" alt="Elog_X_Studio Logo"> -->
+        <div class="nav-text">ELOG_X_STUDIO</div>
+      </div>
+      <div class="menu-toggle" onclick="toggleMenu()" tabindex="0" onkeydown="handleMenuToggleKey(event)">
+        <span>Menu</span>
+        <!-- Fullscreen Menu -->
+        <div id="fullscreen-menu" class="fullscreen-menu">
+          <ul class="menu-items">
+            <li><span>01 /</span><a href="index.html">Home</a></li>
+            <li><span>02 /</span><a href="/contact.html">Contact</a></li>
+            <li><span>03 /</span><a href="/projects.html">Projects</a></li>
+            <li><span>04 /</span><a href="/about.html">About Me</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div id="intro">
+    <div class="absolute">
+      <!-- Intro Section -->
+      <div class="intro fadeIn">
+        <h2 class="textSlideIn">Eshaan Logani</h2>
+        <h4 class="textSlideIn">Creative UI & UX Designer</h4>
+
+        <!-- View More Section -->
+        <div class="View-more fadeIn">
+          <h5>View More</h5>
+          <!-- SVG Icon -->
+          <svg width="37" height="37" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="18.5" cy="18.5" rx="18.5" ry="18.5" fill="none"/>
+            <path d="M17.2929 26.7071C17.6834 27.0976 18.3166 27.0976 18.7071 26.7071L25.0711 20.3431C25.4616 19.9526 25.4616 19.3195 25.0711 18.9289C24.6805 18.5384 24.0474 18.5384 23.6569 18.9289L18 24.5858L12.3431 18.9289C11.9526 18.5384 11.3195 18.5384 10.9289 18.9289C10.5384 19.3195 10.5384 19.9526 10.9289 20.3431L17.2929 26.7071ZM35 18.5C35 27.6127 27.6127 35 18.5 35V37C28.7173 37 37 28.7173 37 18.5H35ZM18.5 35C9.3873 35 2 27.6127 2 18.5H0C0 28.7173 8.28273 37 18.5 37V35ZM2 18.5C2 9.3873 9.3873 2 18.5 2V0C8.28273 0 0 8.28273 0 18.5H2ZM18.5 2C27.6127 2 35 9.3873 35 18.5H37C37 8.28273 28.7173 0 18.5 0V2ZM17 10V26H19V10H17Z" fill="white"/>
+          </svg>
+        </div>
+
+        <!-- About Me Section -->
+        <section id="about" class="about-me">
+          <div class="about-svg-container">
+            <img id="about-svg" src="/assets/expandedAbout.svg" alt="About Me SVG" class="about-svg">
+            <div class="about-text">
+              <h6 class="about">About Me</h6>
+              <p>
+                Creating visually compelling and highly functional digital experiences. Based in Vancouver. Crafting user-focused designs that not only look great but also perform seamlessly. Introducing and experimenting with different and innovative user flows and designs. Expanding the world of possibilities on the web.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects fadeIn">
+          <h6>Projects</h6>
+          <div class="project-cards">
+            <!-- Project 1 -->
+            <div class="project-card">
+              <a href="RudeBot.html" class="card-link">
+                <img src="/assets/rudebot.png" alt="RudeBot" loading="lazy">
+                <!-- Plus Icon SVG -->
+                <svg class="plus" viewBox="0 0 1124 1957">
+                  <path d="M1099.56 1907V1932.56M1099.56 1932.56V1957..." stroke="white" stroke-width="10"/>
+                </svg>
+                <!-- Overlay -->
+                <div class="overlay">
+                  <div class="overlay-text">
+                    <img src="/assets/rudy.png" alt="">
+                    RudeBot
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+              <a href="DsCasa.html" class="card-link">
+                <img src="/assets/Dscasa.png" alt="DsCasa" loading="lazy">
+                <!-- Plus Icon SVG -->
+                <svg class="plus" viewBox="0 0 1124 1957">
+                  <path d="M1099.56 1907V1932.56M1099.56 1932.56V1957..." stroke="white" stroke-width="10"/>
+                </svg>
+                <!-- Overlay -->
+                <div class="overlay">
+                  <div class="overlay-text">
+                    <img src="/assets/dscasaLogo.png" alt="">
+                    D's Casa
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+              <a href="SooyoCafe.html" class="card-link">
+                <img src="/assets/sooyu.jpg" alt="Sooyu Cafe" loading="lazy">
+                <!-- Plus Icon SVG -->
+                <svg class="plus" viewBox="0 0 1124 1957">
+                  <path d="M1099.56 1907V1932.56M1099.56 1932.56V1957..." stroke="white" stroke-width="10"/>
+                </svg>
+                <!-- Overlay -->
+                <div class="overlay">
+                  <div class="overlay-text">
+                    <img src="/assets/sooyo.png" alt="">
+                    Sooyu Cafe
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <a href="projects.html" class="btn btn--stripe fadeInButton">View Projects</a>
+        </section>
+
+        <!-- Get In Touch Section -->
+        <section>
+          <h2 class="get-in-touch">Get in Touch</h2>
+          <div class="GIT">
+            <canvas id="canvas"></canvas>
+            <div class="svg-overlay">
+              <svg viewBox="0 0 403 403">
+                <path d="M2 2H52V52H2V2Z..." stroke="black" stroke-width="3"/>
+              </svg>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- Three.js Scene Container -->
+  <div id="threejs-container">
+    <div id="canvas-container"></div>
+  </div>
+
+  <!-- Scripts -->
+  <!-- Use relative paths for scripts -->
+  <script type="module" src="src/main.js"></script>
+  <script>
+    // Toggle Mobile Menu
+    function toggleMobileMenu(menu) {
+      menu.classList.toggle('open');
+      document.querySelector('.mobile-menu').classList.toggle('open');
+    }
+
+    // Toggle Fullscreen Menu
+    function toggleMenu() {
+      const fullscreenMenu = document.getElementById('fullscreen-menu');
+      fullscreenMenu.classList.toggle('open');
+
+      // Ensure page scrolling is always enabled
+      if (fullscreenMenu.classList.contains('open')) {
+        document.body.style.overflow = 'auto';
+      } else {
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    // Handle Keyboard Events for Menu Toggle
+    function handleMenuToggleKey(event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        toggleMenu();
+      } else if (event.key === 'Escape') {
+        const fullscreenMenu = document.getElementById('fullscreen-menu');
+        if (fullscreenMenu.classList.contains('open')) {
+          fullscreenMenu.classList.remove('open');
+        }
+      }
+    }
+  </script>
+</body>
+</html>
+

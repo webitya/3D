@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects Page</title>
+    <link rel="stylesheet" href="/projects.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=KoHo:wght@300;500&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+</head>
+<body>
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="frame">
+                <div class="nav-text">ELOG_X_STUDIO</div>
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()" tabindex="0" onkeydown="handleMenuToggleKey(event)" aria-expanded="false">
+                <span>Menu</span>
+                <!-- Fullscreen Menu (Hidden by default) -->
+                <div id="fullscreen-menu" class="fullscreen-menu">
+                    <ul class="menu-items">
+                        <li><span>01 /</span><a href="index.html">Home</a></li>
+                        <li><span>02 /</span><a href="contact.html">Contact</a></li>
+                        <li><span>03 /</span><a href="projects.html">Projects</a></li>
+                        <li><span>04 /</span><a href="about.html">About Me</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="page">    
+        <!-- Project Card Wrapper -->
+        <div class="card-wrapper">
+            <div class="Projects">
+                Projects <br>Playground</br>
+            </div>
+            <div class="cards">    
+                <div class="card-root" style="--card-index: 0;" onclick="location.href='RudeBot.html';" style="cursor: pointer;">
+                    <div class="card">
+                        <img class="top-card" src="/assets/Asset 4.png" alt="">
+                        <img class="bottom-card" src="/assets/Asset 7.png" alt="">
+                        <div class="vertical-line-1"></div>
+                        <div class="vertical-line-2"></div>
+                        <div class="card-info">
+                            <div class="card-index">01 /</div>
+                            <div class="card-title">RudeBot</div>
+                            <div class="card-year">Year-2021</div>
+                        </div>
+                        <div class="image-container">
+                            <img class="img" src="/assets/rudebotmockup1.png" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-root" style="--card-index: 1;" onclick="location.href='SooyuCafe.html';" style="cursor: pointer;">
+                    <div class="card">
+                        <img class="top-card" src="/assets/Asset 4.png" alt="">
+                        <img class="bottom-card" src="/assets/Asset 7.png" alt="">
+                        <div class="vertical-line-1"></div>
+                        <div class="vertical-line-2"></div>
+                        <div class="card-info">
+                            <div class="card-index">02 /</div>
+                            <div class="card-title">SooyuCafe</div>
+                            <div class="card-year">Year-2024</div>
+                        </div>
+                        <div class="image-container">
+                            <img class="img" src="/assets/sooyu-mockup1.png" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-root" style="--card-index: 2;" onclick="location.href='RecycleBC.html';" style="cursor: pointer;">
+                    <div class="card">
+                        <img class="top-card" src="/assets/Asset 4.png" alt="">
+                        <img class="bottom-card" src="/assets/Asset 7.png" alt="">
+                        <div class="vertical-line-1"></div>
+                        <div class="vertical-line-2"></div>
+                        <div class="card-info">
+                            <div class="card-index">03 /</div>
+                            <div class="card-title">Recycle BC</div>
+                            <div class="card-year">Year-2023</div>
+                        </div>
+                        <div class="image-container">
+                            <img class="img" src="/assets/sooyu-mockup1.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+    <!-- External JavaScript -->
+    <script src="/src/projects.js"></script>
+
+    <script>
+        // Add smooth scrolling behavior
+        document.querySelector('.card-wrapper').addEventListener('wheel', (evt) => {
+            evt.preventDefault();
+            document.querySelector('.card-wrapper').scrollBy({
+                left: evt.deltaY * 3,
+                behavior: 'smooth'
+            });
+        });
+
+        /* Intersection Observer Script to Trigger Animation on Scroll */
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card-root');
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 1 });
+
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+        function toggleMenu() {
+      const fullscreenMenu = document.getElementById('fullscreen-menu');
+      fullscreenMenu.classList.toggle('open');
+
+      // Ensure page scrolling is always enabled
+      if (fullscreenMenu.classList.contains('open')) {
+        document.body.style.overflow = 'auto';
+      } else {
+        document.body.style.overflow = 'auto';
+      }
+    }
+           function handleMenuToggleKey(event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        toggleMenu();
+      } else if (event.key === 'Escape') {
+        const fullscreenMenu = document.getElementById('fullscreen-menu');
+        if (fullscreenMenu.classList.contains('open')) {
+          fullscreenMenu.classList.remove('open');
+        }
+      }
+    }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,972 @@
+:root {
+    --line-color: #fff;
+    --animation-duration: 3s;
+    --animation-duration1: 5s; /* Slower animation duration */
+    --scroll-speed: 0.8s;
+}
+
+
+body {
+    margin: 0;
+    background-color: #000000;
+    color: #000000;
+    overflow-x: hidden;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8); /* Add transparency for a modern look */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 125px;
+    z-index: 10000;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+}
+.frame {
+    justify-content: center; /* Move title closer to the center */
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Reduced gap to bring the title and menu closer together */
+}
+.nav-text {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(24px, 5vw, 40px);
+    letter-spacing: 2px;
+    padding-top: 20px; /* Add padding to vertically center the title */
+    padding-left: 4rem;
+    color: var(--line-color);
+    transition: color 0.3s ease;
+}
+.menu-toggle {
+    cursor: pointer;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(18px, 4vw, 28px);
+    letter-spacing: 2px;
+    margin-top: 20px;
+    margin-right: 4rem; /* Reduced margin to bring menu closer to the title */
+    color: var(--line-color);
+    transition: color 0.3s ease;
+    padding: 0 10px 0px 10px; /* Add padding to increase hit area */
+}
+
+/* Mobile Devices (max-width: 600px) */
+@media (max-width: 600px) {
+    .navbar {
+        height: 100px;
+    }
+    .menu-toggle {
+        margin-top: 15px;
+        margin-right: 2rem;
+    }
+    .menu-items li {
+        font-size: 24px;
+    }
+    .Projects {
+        font-size: 2rem;
+        padding: 20% 5% 5% 3%;
+    }
+    .img1, .img2 {
+        width: 100%;
+        height: auto;
+    }
+    .description {
+        font-size: 24px;
+    }
+    .title {
+        font-size: 100px;
+    }
+}
+
+/* Tablets (601px to 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .navbar {
+        height: 110px;
+    }
+    .menu-toggle {
+        margin-top: 18px;
+        margin-right: 3rem;
+    }
+    .menu-items li {
+        font-size: 28px;
+    }
+    .Projects {
+        font-size: 3rem;
+        padding: 50% 7% 7% 4%;
+    }
+    .img1, .img2 {
+        width: 80%;
+        height: auto;
+    }
+    .description {
+        font-size: 36px;
+    }
+    .title {
+        font-size: 150px;
+    }
+}
+
+/* Desktops (Above 1024px) */
+@media (min-width: 1025px) {
+    .Projects {
+        font-size: 3rem;
+        padding: 30% 10% 10% 5%;
+    }
+    .img1, .img2 {
+        width: 1200px;
+        height: 650px;
+    }
+    .description {
+        font-size: 48px;
+    }
+    .title {
+        font-size: 175px;
+    }
+}
+
+/* Fullscreen Menu Overlay */
+.fullscreen-menu {
+    position: fixed;
+    top: var(--navbar-height); /* Place fullscreen menu just below the navbar using navbar height variable */
+    left: 0;
+    width: 100vw; /* Full width of the screen */
+    transform: scaleY(0); /* Start with scaleY as 0 */
+    transform-origin: top;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 9;
+    transition: transform 0.7s ease-in-out;
+    overflow: hidden;
+}
+.fullscreen-menu.open {
+    transform: scaleY(1); /* Expand to cover the screen below the navbar */
+    width: 100vw; /* Full width of the screen */
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.95);
+}
+
+/* Menu Items (Full Screen) */
+.menu-items {
+    list-style: none;
+    padding-right: 65px;
+    padding-bottom: 100px;
+    margin-top: 100px;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(24px, 4vw, 36px);
+    text-align: right;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out 0.7s;
+}
+
+.fullscreen-menu.open .menu-items {
+    opacity: 1;
+}
+
+.menu-items li {
+    margin-bottom: 30px;
+    font-size: clamp(28px, 6vw, 48px);
+}
+
+@media (max-width: 600px) {
+    .menu-items li {
+        font-size: 32px; /* Reduce font size for smaller screens */
+    }
+}
+
+.menu-items li span {
+    font-size: clamp(14px, 3vw, 18px);
+    margin-right: 10px;
+}
+
+.menu-items li a {
+    text-decoration: none;
+    color: #cfcfcf;
+    font-size: clamp(32px, 8vw, 64px);
+    transition: color 0.3s ease;
+}
+
+.menu-items li a:hover {
+    color: #ffffff;
+}
+.menu-toggle, .menu-items li a {
+    position: relative;
+    display: inline-block;
+}
+.menu-toggle::after, .menu-items li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #ffffff;
+    transition: width 0.3s ease;
+}
+.menu-toggle:hover::after, .menu-items li a:hover::after {
+    width: 100%;
+}
+
+.project-title {
+    margin-top: 125px;
+}
+
+.title{
+    position: relative;
+    text-align: center;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(100px, 10vw, 175px);
+    font-weight: 500;
+    letter-spacing: 10px;
+    color: var(--line-color);
+    transition: color 0.3s ease;
+}
+.work-type {
+    position: relative; 
+    text-align: center;
+    font-family: "Rajdhani", sans-serif;
+    font-size: clamp(20px, 4vw, 30px);
+    font-weight: 600;
+    color: var(--line-color);
+    transition: color 0.3s ease;
+}
+.details {
+    margin: 100px 0 10px 0;
+}
+.design-title {
+    position: relative;
+    text-align: center;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(100px, 10vw, 175px);
+    font-weight: 500;
+    letter-spacing: 10px;
+    color: var(--line-color);
+    transition: color 0.3s ease;
+
+}
+.masking-text {
+    display: flex; /* Use Flexbox to control alignment */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    flex-direction: column; /* Arrange items in a column */
+    gap: 100px; /* Space between each item */
+    text-align: center;
+    color: #ffffff; /* White text */
+    margin: 0;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(14px, 3vw, 24px);
+    font-weight: 400;
+    line-height: 1.56;
+    -webkit-text-size-adjust: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    pointer-events: none;
+}
+
+.line {
+    display: flex;
+    gap: 25px; /* Space between list items */
+    list-style: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center; /* Align text vertically */
+}
+
+.label {
+    font-weight: 600;
+    font-size: clamp(14px, 3vw, 20px);
+}
+
+.value {
+    margin-left: 5px; /* Space between label and value */
+    color: #888888;
+    font-weight: 400;
+    font-size: clamp(12px, 2.5vw, 18px);
+}
+
+.dropdown-details {
+    display: none;
+    position: absolute;
+    background-color: #022D42;
+    color: #E4E4D4;
+    padding: 10px;
+    border-radius: 4px;
+    z-index: 1;
+    margin-top: 10px;
+    font-size: clamp(12px, 2.5vw, 16px);
+}
+
+.dropdown-content {
+    position: relative;
+    display: inline-block;
+}
+
+.icon-info {
+    cursor: pointer;
+    position: relative;
+}
+.img1{
+    width: 1200px; /* Set the desired width for the container */
+    height: 650px; /* Set the desired height for the container */
+    overflow: hidden; /* Hide any part of the image that overflows the container */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; /* Center the container */
+}
+.image1 {
+    position: relative;
+    align-items: center;
+    max-height: 1000px;
+    border-radius: 10px;
+    transition: transform 0.5s;
+}
+
+.intro {
+    display: flex;
+    justify-content: center; /* Center the description horizontally within the page */
+    align-items: center;
+    height: 50vh; /* Optional: to center vertically within the viewport */
+    left: 10%;
+}
+
+.description {
+    text-align: left;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(24px, 5vw, 48px);
+    font-weight: 400;
+    line-height: 1.56;
+    color: #ffffff;
+    max-width: 1200px; /* Set a max width to keep the paragraph readable */
+}
+
+.background1{
+    position: absolute;
+    top: 600px;
+    width: 100%;
+    height: 2500px;
+    background-color: #2f2f2f;
+    z-index: -1;
+}
+.line-1 {
+    position: absolute;
+    width: 2px; /* Start as a point */
+    height: 0.2vw;
+    background-color: var(--line-color);
+    z-index: 2;
+    animation: growWidth 5s forwards;
+    transform-origin: left;
+    left: 10%; /* Ensure the line starts expanding from the left */
+    margin: -20px;
+}
+
+@keyframes growWidth {
+    0% {
+        width: 1px;
+    }
+    100% {
+        width: 80%;
+    }
+}
+
+.project-overview {
+    position: relative;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 6vw, 52px);
+    font-weight: 500;
+    line-height: 1.56;
+    color: #ffffff;
+    left: 9%;
+    margin-top: 50px;    
+}
+ 
+.overview-text {
+    position: relative;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(16px, 4vw, 24px);
+    font-weight: 400;
+    line-height: 1.56;
+    color: #ffffff;    
+    align-items: left;
+    max-width: 41%;
+    margin-top: -85px;
+}
+.overview-text {
+    position: relative;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(16px, 4vw, 20px);
+    font-weight: 400;
+    line-height: 1.56;
+    color: #ffffff;    
+    left: 50%;
+    max-width: 41%;
+    margin-top: -85px;
+}
+
+.img2{
+    width: 1200px; /* Set the desired width for the container */
+    height: 650px; /* Set the desired height for the container */
+    overflow: hidden; /* Hide any part of the image that overflows the container */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; /* Center the container */
+}
+.image2 {
+    position: relative;
+    align-items: center;
+    max-width: 51%;
+    border-radius: 10px;
+    transition: transform 0.5s;
+    left: 20%;
+}
+.challenge-section {
+position: relative;
+display: flex;
+left: 50%;    
+margin-bottom: 1rem;
+}
+
+.challenge-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.challenge-description {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(16px, 4vw, 20px);
+    font-weight: 400;
+    line-height: 1.56;
+    color: #ffffff; 
+    margin-bottom: 0.5rem;
+    max-width: 41%;
+} 
+
+.approach-section {
+    position: relative;
+    display: flex;
+    left: 50%;    
+    margin-bottom: 1rem;
+    }
+    
+    .approach-title {
+        font-family: 'Rajdhani', sans-serif;
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: #ffffff;
+        margin-bottom: 0.5rem;
+    }
+    
+    .approach-description {
+        font-family: 'Rajdhani', sans-serif;
+        font-size: clamp(16px, 4vw, 20px);
+        font-weight: 400;
+        line-height: 1.56;
+        color: #ffffff; 
+        margin-bottom: 0.5rem;
+        max-width: 41%;
+    } 
+    .objective-section {
+        position: relative;
+        margin-top: -55%;
+        left: 6%;
+    }
+    .objective-title {
+        font-family: 'Rajdhani', sans-serif;
+        font-weight: 600;
+        font-size: 32px;
+        color: #ffffff;
+        margin-left: 2.5rem;
+        margin-bottom: 2rem;
+    }
+    .objective-list {
+        list-style: none;
+
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        max-width: 500px;
+        width: 100%;
+        gap: 1rem;
+    }
+        .objective-item {
+            flex: 1 1 calc(33.33% - 1rem);
+            background-color: #343434;
+            padding: 1.5rem;
+            border: 2px solid #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            padding: 5rem 1.5rem 1.5rem 1.5rem; /* Add extra top padding to fit the number */
+            font-family: Rajdhani, sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
+            color: rgb(255, 255, 255);
+        }
+        
+    .objective-step-number {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        margin: -3rem auto 2rem;
+        border: 2px solid rgb(255, 255, 255);
+        border-radius: 50%;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: rgb(255, 255, 255);
+    }
+    
+    .objective-description {
+        font-family: 'Rajdhani', sans-serif;
+        text-align: center;
+        font-size: 1rem;
+        color: rgb(0, 0, 0);
+    }
+
+    .background2 {
+        position: relative;
+        width: 100%;
+        height: 3000px; /* Set the desired height for your background */
+        background-color: #4f4f4f; /* Adjust the text color to contrast with the background */
+        background-size: cover;
+        background-position: center;
+        margin-top: 75px;
+    }
+    
+    .design-title {
+        position: absolute;
+        top: 300px;
+        left: 50%;
+        font-family: 'Bebas Neue', sans-serif;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: #fff; /* Adjust the text color to contrast with the background */
+        font-size: 125px; /* Adjust font size as needed */
+        z-index: 1;
+    }
+    
+    .tags { 
+        position: relative;
+        top: 10%;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 36px; /* Adjust font size as needed */
+        color: #fff; /* Adjust the text color to contrast with the background */
+        text-align: center;
+        z-index: 1;
+    }
+    .img3{
+        width: 1200px; /* Set the desired width for the container */
+        height: 650px; /* Set the desired height for the container */
+        overflow: hidden; /* Hide any part of the image that overflows the container */
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto; /* Center the container */
+        padding-top: 600px;
+    }   
+    .image3 {
+        position: relative;
+        align-items: center;
+        max-width: 51%;
+        border-radius: 10px;
+        transition: transform 0.5s;
+        left: 20%;
+    }
+    .design-overview{
+        position: relative;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(32px, 6vw, 52px);
+        font-weight: 500;
+        line-height: 1.56;
+        color: #ffffff;
+        left: 9%;
+        margin-top: 30px; 
+        max-width: 85%;
+    }
+    .challenge-title1 {
+        position: absolute;
+        left: 9%;
+        font-family: 'Rajdhani', sans-serif;
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: #ffffff;
+        margin-bottom: 0.5rem;
+    }
+    .challenge-description1 {
+        position: absolute;
+        left: -18%;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: clamp(16px, 4vw, 20px);
+        font-weight: 400;
+        line-height: 1.56;
+        color: #ffffff; 
+        margin-bottom: 0.5rem;
+        max-width: 60%;
+    }
+    
+    .direction{
+        position: absolute;
+        left: 32%;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: clamp(16px, 4vw, 20px);
+        font-weight: 700;
+        line-height: 1.56;
+        color: #ffffff; 
+        margin-bottom: 0.5rem;
+        max-width: 41%;
+        margin-top: 200px;
+    }
+
+.direction-text {
+    position: absolute;
+    left: 32%;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(16px, 4vw, 20px);
+    font-weight: 400;
+    line-height: 1.56;
+    color: #ffffff; 
+    margin-bottom: 0.5rem;
+    max-width: 25%;
+    margin-top: 200px;
+    padding: 5% 0 0 0;
+}
+ 
+    .result{
+        position: absolute;
+        left: 62%;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: clamp(16px, 4vw, 20px);
+        font-weight: 700;
+        line-height: 1.56;
+        color: #ffffff; 
+        margin-bottom: 0.5rem;
+        max-width: 41%;
+        margin-top: 200px;
+    }
+
+    .result-text {
+        position: absolute;
+        left: 62%;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: clamp(16px, 4vw, 20px);
+        font-weight: 400;
+        line-height: 1.56;
+        color: #ffffff; 
+        margin-bottom: 0.5rem;
+        max-width: 25%;
+        margin-top: 200px;
+        padding: 5% 0 0 0;
+    }
+
+    .fonts{
+        position: relative;
+        margin-bottom: 0.5rem;
+        margin-top: 500px;
+    }
+
+
+    .font-title {
+        position: absolute;
+        left: 9%;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: clamp(16px, 4vw, 20px);
+        font-weight: 700;
+        line-height: 1.56;
+        color: #ffffff; 
+        margin-bottom: 0.5rem;
+        margin-top: 200px;
+    }
+    .font-img {
+        width: 1750px; /* Set the desired width for the container */
+        height: 950px; /* Set the desired height for the container */
+        overflow: hidden; /* Hide any part of the image that overflows the container */
+        position: absolute;
+        display: flex;
+        top: -30px;
+        left: -400px;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto; /* Center the container */
+    }
+    
+    .hover-image {
+        width: 100%;
+        height: auto;
+        transition: opacity 1s ease-in-out, transform 0.7s ease-in-out; /* Longer and smoother fade with scale effect */
+    }
+    
+    .hover-image:hover {
+        content: url('pub/assets/rudebot-style2.png');
+        opacity: 1; /* Ensure opacity is fully set to create a smooth transition */
+    }
+    
+    .image-container {
+        left: 75px;
+        top: 50px;
+        position: relative;
+        scale: 0.65;
+    }
+
+
+    .background3 {
+        position: relative;
+        width: 100%;
+        height: 3000px; /* Set the desired height for your background */
+        background-color: #171717; /* Adjust the text color to contrast with the background */
+        background-size: cover;
+        background-position: center;
+    }
+
+    .prototype-title {
+        font-family: 'Bebas Neue', sans-serif;
+        text-align: center;
+        color: #fff; /* Adjust the text color to contrast with the background */
+        font-size: 125px; /* Adjust font size as needed */
+        z-index: 1;
+    }
+
+    .prototype-container {
+        position: absolute;
+        top: 100px;
+        left: 25%;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+    }
+    .img4 {
+        width: 1200px; /* Set the desired width for the container */
+        height: 650px; /* Set the desired height for the container */
+        overflow: hidden; /* Hide any part of the image that overflows the container */
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto; /* Center the container */
+        padding-top: 600px;
+    }
+
+/* Chatbot Container Styles */
+.chatbot-container {
+    max-width: 500px; /* Adjust as needed */
+    margin: 0 auto;
+    font-family: 'KoHo', sans-serif;
+    color: #333;
+    position: relative;
+    top: 200px;
+}
+
+/* Chat Window Container */
+.chat-window-container {
+    position: relative;
+}
+
+/* SVG Chat Window */
+.chat-window-svg {
+    width: 100%;
+    scale: 2.5;
+    height: auto;
+    display: block;
+}
+
+/* Chat Window Overlay */
+.chat-window {
+    position: absolute;
+    top: -25%;   /* Adjust to align with your SVG */
+    left: -65%;   /* Adjust to align with your SVG */
+    width: 225%; /* Adjust to align with your SVG */
+    max-height: 400px; /* Adjust to align with your SVG */
+    overflow-y: scroll;
+    display: hidden;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox *
+    /* Optional: background-color: rgba(255, 255, 255, 0.5); */
+}
+
+/* Chat Output Styles */
+.chat-output {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+/* Chat Messages */
+.chat-message {
+    margin-bottom: 10px;
+}
+
+.user-message {
+    align-self: flex-end;
+    background-color: #dcf8c6; /* Light green */
+    color: #000;
+    padding: 8px 12px;
+    border-radius: 15px 15px 0 15px;
+    max-width: 70%;
+    margin-left: 10px;
+
+}
+
+.bot-message {
+    align-self: flex-start;
+    background-color: #fff;
+    color: #000;
+    padding: 8px 12px;
+    border-radius: 15px 15px 15px 0;
+}
+
+/* Chat Input Overlay */
+.chat-input-container {
+    position: absolute;
+    top: 120%;   /* Adjust to align with your SVG */
+    left: -65%;   /* Adjust to align with your SVG */
+    width: 225%; /* Adjust to align with your SVG */
+}
+
+.chat-input {
+    display: flex;
+    align-items: center;
+    background-color: #f1f1f1;
+    border-radius: 25px;
+    padding: 5px 10px;
+}
+
+.chat-input input[type="text"] {
+    flex-grow: 1;
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    outline: none;
+    background-color: #fff;
+    margin-right: 5px;
+}
+
+.chat-input button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.chat-input img {
+    width: 24px;
+    height: 24px;
+}
+
+.attachment-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.send-icon {
+scale: 1.5;
+
+}
+
+.trial {
+    font-family: 'Bebas Neue', sans-serif;
+    text-align: center;
+    color: #fff;
+    font-size: 128px; /* Adjusted font size for better visibility */
+    margin-top: 100px; /* Added margin to separate from elements above */
+    margin-bottom: 50px; /* Added margin to separate from elements below */
+}
+/* Prototyping Process Section */
+/* Prototyping Process Section */
+.prototyping-process {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 100px 0;
+}
+
+.section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 72px);
+    text-align: center;
+    color: #000000;
+    margin-bottom: 80px;
+}
+
+.content-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto 100px auto;
+    padding: 0 20px;
+}
+
+.content-block.reverse {
+    flex-direction: row-reverse;
+}
+
+.image-container,
+.text-container {
+    flex: 1;
+}
+
+.image-container {
+    margin-right: 40px;
+}
+
+.content-block.reverse .image-container {
+    margin-right: 0;
+    margin-left: 40px;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.text-container h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 4vw, 48px);
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.text-container p {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(16px, 2vw, 20px);
+    line-height: 1.6;
+    color: #333333;
+}
+
+@media (max-width: 1024px) {
+    .content-block {
+        flex-direction: column;
+        margin-bottom: 60px;
+    }
+
+    .content-block.reverse {
+        flex-direction: column;
+    }
+
+    .image-container,
+    .text-container {
+        margin: 0;
+    }
+
+    .image-container {
+        margin-bottom: 20px;
+    }
+}
